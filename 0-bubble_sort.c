@@ -1,43 +1,27 @@
 #include "sort.h"
 
 /**
- * swap - Swap start and next index values.
- * @array: the start and next values array.
- * @start: the array start point.
- * @next: next point of the array.
- * Return: nothing.
+ * bubble_sort - A function run a bubble sorting file.
+ * @array: The array to sort.
+ * @size: length of the array.
+ * Return: Nothing.
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i;
-	int temp;
-	int swaps = -1;  /* swap counter */
+	size_t i = 0, j = 0;
+	int aux = 0;
 
-	/* An array does not need to be sorted if it's size is less than 2 */
-	if (size < 2)
+	if (array == NULL || size == 0)
 		return;
-
-	/* repeat until swap counter is equal to 0 */
-	while (swaps)
+	for (; i < size - 1; i++)
 	{
-		/* resets swap counter to 0 */
-		swaps = 0;
-
-		/* looks at each pair */
-		for (i = 0; i < size - 1; i++)
+		for (j = 0; j < size - i - 1; j++)
 		{
-			/* if the adjacent elements are not in order */
-			if (array[i] > array[i + 1])
+			if (array[j] > array[j + 1])
 			{
-				/* swap them */
-				temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
-
-				/* increment swap counter */
-				swaps++;
-
-				/* print the array */
+				aux = array[j + 1];
+				array[j + 1] = array[j];
+				array[j] = aux;
 				print_array(array, size);
 			}
 		}
