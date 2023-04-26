@@ -7,40 +7,39 @@
  * @next: next point of the array.
  * Return: nothing.
  */
-void swap(int *array, size_t start, size_t next)
-{
-	size_t temp = array[next];
-
-	array[next] = array[start];
-	array[start] = temp;
-}
-
-/**
- * bubble_sort - Sorting an array with bubble algorithm.
- * @array: the array to be sorted.
- * @size: size of the array.
- * Return: nothing
- */
 void bubble_sort(int *array, size_t size)
 {
-	size_t start = 0;
-	size_t next = 0;
+	size_t i;
+	int temp;
+	int swaps = -1;  /* swap counter */
 
-	if (!array || size < 2)
+	/* An array does not need to be sorted if it's size is less than 2 */
+	if (size < 2)
 		return;
 
-	while (start < size)
+	/* repeat until swap counter is equal to 0 */
+	while (swaps)
 	{
-		next = 0;
-		while (next < size - 1)
+		/* resets swap counter to 0 */
+		swaps = 0;
+
+		/* looks at each pair */
+		for (i = 0; i < size - 1; i++)
 		{
-			if (array[next] > array[next + 1])
+			/* if the adjacent elements are not in order */
+			if (array[i] > array[i + 1])
 			{
-				swap(array, next, next + 1);
+				/* swap them */
+				temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
+
+				/* increment swap counter */
+				swaps++;
+
+				/* print the array */
 				print_array(array, size);
 			}
-			next++;
 		}
-		start++;
 	}
 }
